@@ -15,16 +15,16 @@ Going to 'http://localhost:8080/Test' in browser will show "Hello World"
 using RestEasy;
 public class HelloWorld
 {
-	public static void Main()
-	{
-		var rest = new RestService();
+    public static void Main()
+    {
+        var rest = new RestService();
 
-		rest.Register(RestMethod.GET, "/Test", (req, res) => { res.Send("Hello World"); });
+        rest.Register(RestMethod.GET, "/Test", (req, res) => { res.Send("Hello World"); });
 
-		rest.Listen(8080);
+        rest.Listen(8080);
 
-		Console.ReadKey();
-	}
+        Console.ReadKey();
+    }
 }
 ```
 
@@ -34,14 +34,22 @@ public class HelloWorld
 using RestEasy;
 public class Program 
 {
-	public static void Main()
-	{
- 		var service = new RestService();
+    public static void Main()
+    {
+        var service = new RestService();
 
         //http://localhost:8080/
         service.Register(RestMethod.GET, "/", (req, res) =>
         {
             res.Send("Hello World");
+        });
+
+        //http://localhost:8080/home
+        service.Register(RestMethod.GET, "/home", (req, res) =>
+        {
+
+            res.SendHtml("<html><head></head><body><h1>Hello World!</h1></body></html>");
+
         });
 
         service.Register(RestMethod.POST, "/user/[name]/update", (req, res) =>
@@ -65,7 +73,7 @@ public class Program
         service.Listen(8080);
 
         Console.ReadKey();
-	}
+    } 
 }
 ```
 
