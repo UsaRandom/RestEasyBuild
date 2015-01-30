@@ -17,11 +17,11 @@ public class HelloWorld
 {
     public static void Main()
     {
-        var rest = new RestService();
+        var rest = new RestService(8080);
 
         rest.Register(RestMethod.GET, "/Test", (req, res) => { res.Send("Hello World"); });
 
-        rest.Listen(8080);
+        rest.Listen();
 
         Console.ReadKey();
     }
@@ -36,7 +36,7 @@ public class Program
 {
     public static void Main()
     {
-        var service = new RestService();
+        var service = new RestService(8080);
 
         //http://localhost:8080/
         service.Register(RestMethod.GET, "/", (req, res) =>
@@ -70,7 +70,7 @@ public class Program
             Console.WriteLine(error);
         };
 
-        service.Listen(8080);
+        service.Listen();
 
         Console.ReadKey();
     } 
